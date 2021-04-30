@@ -42,4 +42,50 @@ CREATE TABLE `job_tag_map` (
     `tag` varchar(32) NOT NULL COMMENT '标签',
     `createtime` datetime NOT NULL COMMENT '创建时间',
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COMMENT='岗位标签映射表';
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COMMENT='岗位与标签映射表';
+
+CREATE TABLE `resume` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `user_id` int(11) NOT NULL COMMENT '用户id',
+    `state` varchar(32) DEFAULT NULL COMMENT '求职状态',
+    `city` varchar(32) DEFAULT NULL COMMENT '所在城市',
+    `identity`  varchar(32) DEFAULT NULL COMMENT '身份',
+    `intention`  varchar(32) DEFAULT NULL COMMENT '求职意向',
+    `advantage`  text DEFAULT NULL COMMENT '个人优势',
+    `work_experience`  text DEFAULT NULL COMMENT '工作经历',
+    `createtime` datetime NOT NULL COMMENT '创建时间',
+    `lastupdate` datetime NOT NULL COMMENT '更新时间',
+    PRIMARY KEY (`id`),
+    UNIQUE KEY (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COMMENT='用户简历表';
+
+CREATE TABLE `resume_education_map` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `resume_id` int(11) NOT NULL COMMENT '简历id',
+    `school_name` varchar(32) DEFAULT NULL COMMENT '学校名称',
+    `matriculation_time` varchar(32) DEFAULT NULL COMMENT '入学时间',
+    `graduation_time` varchar(32) DEFAULT NULL COMMENT '毕业时间',
+    `createtime` datetime NOT NULL COMMENT '创建时间',
+    `lastupdate` datetime NOT NULL COMMENT '更新时间',
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COMMENT='简历与教育经历映射表';
+
+CREATE TABLE `job_expectation` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `user_id` int(11) NOT NULL COMMENT '用户id',
+    `job_tags` varchar(32) DEFAULT NULL COMMENT '职位类别',
+    `pay` varchar(32) DEFAULT NULL COMMENT '期望薪资',
+    `city` varchar(32) DEFAULT NULL COMMENT '期望城市',
+    `createtime` datetime NOT NULL COMMENT '创建时间',
+    `lastupdate` datetime NOT NULL COMMENT '更新时间',
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COMMENT='求职期望表';
+
+
+CREATE TABLE `deliver_record` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `user_id` int(11) NOT NULL COMMENT '用户id',
+    `job_id` int(11) NOT NULL COMMENT '岗位id',
+    `createtime` datetime NOT NULL COMMENT '创建时间',
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COMMENT='简历投递情况表';
