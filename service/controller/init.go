@@ -282,7 +282,7 @@ func (Controller Controller) Login(ctx *gin.Context) {
 			JSONSuccess(ctx, http.StatusOK, gin.H{
 				"Bearer":    token,
 				"ID":        userInfo.ID,
-				"Username":  userInfo.UserName,
+				"UserName":  userInfo.UserName,
 				"Nick":      userInfo.Nick,
 				"Sex":       userInfo.Sex,
 				"HeadImage": userInfo.HeadImage,
