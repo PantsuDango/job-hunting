@@ -111,19 +111,19 @@
 
 ##### 返回参数说明 
 
-| 参数名    | 类型   | 说明             |
-| --------- | :----- | ---------------- |
-| Bearer    | String | 鉴权token        |
-| ID        | Int    | 用户操作ID       |
-| Nick      | String | 用户昵称         |
-| UserName  | String | 用户名           |
-| HeadImage | String | 头像图片链接     |
-| Sex       | Int    | 性别: 0-男, 1-女 |
-| Phone     | String | 手机号           |
-| Email     | String | 邮箱             |
-| Birthday  | String | 生日             |
-| Job       | String | 职位             |
-| Address   | String | 家庭住址         |
+| 参数名    | 类型   | 说明                     |
+| --------- | :----- | ------------------------ |
+| Bearer    | String | 鉴权token                |
+| ID        | Int    | 用户操作ID               |
+| Nick      | String | 用户昵称                 |
+| UserName  | String | 用户名                   |
+| HeadImage | String | 头像图片链接             |
+| Sex       | Int    | 性别: 0-保密, 1-男, 2-女 |
+| Phone     | String | 手机号                   |
+| Email     | String | 邮箱                     |
+| Birthday  | String | 生日                     |
+| Job       | String | 职位                     |
+| Address   | String | 家庭住址                 |
 
 
 
