@@ -289,6 +289,7 @@ func (Controller Controller) Login(ctx *gin.Context) {
 				"Email":     userInfo.Email,
 				"Phone":     userInfo.Phone,
 				"Birthday":  userInfo.Birthday,
+				"Degree":    userInfo.Degree,
 				"Job":       userInfo.Job,
 				"Address":   userInfo.Address,
 			})
