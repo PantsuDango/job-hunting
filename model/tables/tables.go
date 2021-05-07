@@ -53,19 +53,57 @@ func (JobTagMap) TableName() string {
 }
 
 type Resume struct {
-	ID             int    `json:"ID"              form:"ID"              gorm:"column:id"`
-	UserId         int    `json:"UserId"          form:"UserId"          gorm:"column:user_id"`
-	State          string `json:"State"           form:"State"           gorm:"column:state"`
-	City           string `json:"City"            form:"City"            gorm:"column:city"`
-	Identity       string `json:"Identity"        form:"Identity"        gorm:"column:identity"`
-	Intention      string `json:"Intention"       form:"Intention"       gorm:"column:intention"`
-	Advantage      string `json:"Advantage"       form:"Advantage"       gorm:"column:advantage"`
-	WorkExperience string `json:"WorkExperience"  form:"WorkExperience"  gorm:"column:work_experience"`
-
-	CreatedAt time.Time `json:"CreateTime"   form:"CreateTime"   gorm:"column:createtime"`
-	UpdatedAt time.Time `json:"UpdateTime"   form:"UpdateTime"   gorm:"column:lastupdate"`
+	ID             int       `json:"ID"              form:"ID"              gorm:"column:id"`
+	UserId         int       `json:"UserId"          form:"UserId"          gorm:"column:user_id"`
+	State          string    `json:"State"           form:"State"           gorm:"column:state"`
+	City           string    `json:"City"            form:"City"            gorm:"column:city"`
+	Identity       string    `json:"Identity"        form:"Identity"        gorm:"column:identity"`
+	Intention      string    `json:"Intention"       form:"Intention"       gorm:"column:intention"`
+	Advantage      string    `json:"Advantage"       form:"Advantage"       gorm:"column:advantage"`
+	WorkExperience string    `json:"WorkExperience"  form:"WorkExperience"  gorm:"column:work_experience"`
+	CreatedAt      time.Time `json:"CreateTime"      form:"CreateTime"      gorm:"column:createtime"`
+	UpdatedAt      time.Time `json:"UpdateTime"      form:"UpdateTime"      gorm:"column:lastupdate"`
 }
 
 func (Resume) TableName() string {
 	return "resume"
+}
+
+type ResumeEducationMap struct {
+	ID                int       `json:"ID"                 form:"ID"                 gorm:"column:id"`
+	ResumeId          int       `json:"ResumeId"           form:"ResumeId"           gorm:"column:resume_id"`
+	SchoolName        string    `json:"SchoolName"         form:"SchoolName"         gorm:"column:school_name"`
+	MatriculationTime string    `json:"MatriculationTime"  form:"MatriculationTime"  gorm:"column:matriculation_time"`
+	GraduationTime    string    `json:"GraduationTime"     form:"GraduationTime"     gorm:"column:graduation_time"`
+	CreatedAt         time.Time `json:"CreateTime"         form:"CreateTime"         gorm:"column:createtime"`
+	UpdatedAt         time.Time `json:"UpdateTime"         form:"UpdateTime"         gorm:"column:lastupdate"`
+}
+
+func (ResumeEducationMap) TableName() string {
+	return "resume_education_map"
+}
+
+type JobExpectation struct {
+	ID        int       `json:"ID"          form:"ID"          gorm:"column:id"`
+	UserId    int       `json:"UserId"      form:"UserId"      gorm:"column:user_id"`
+	JobTags   string    `json:"JobTags"     form:"JobTags"     gorm:"column:job_tags"`
+	Pay       string    `json:"Pay"         form:"Pay"         gorm:"column:pay"`
+	City      string    `json:"City"        form:"City"        gorm:"column:city"`
+	CreatedAt time.Time `json:"CreateTime"  form:"CreateTime"  gorm:"column:createtime"`
+	UpdatedAt time.Time `json:"UpdateTime"  form:"UpdateTime"  gorm:"column:lastupdate"`
+}
+
+func (JobExpectation) TableName() string {
+	return "job_expectation"
+}
+
+type DeliverRecord struct {
+	ID        int       `json:"ID"          form:"ID"          gorm:"column:id"`
+	UserId    int       `json:"UserId"      form:"UserId"      gorm:"column:user_id"`
+	JobId     int       `json:"JobId"       form:"JobId"       gorm:"column:job_id"`
+	CreatedAt time.Time `json:"CreateTime"  form:"CreateTime"  gorm:"column:createtime"`
+}
+
+func (DeliverRecord) TableName() string {
+	return "deliver_record"
 }
