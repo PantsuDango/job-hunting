@@ -208,3 +208,57 @@
     "src": "/group1/default/20210423/00/50/5/a4a2be1aaebe0b6f0946654e8c4e2061.json"
 }
 ```
+
+
+
+
+### 新建职位
+
+
+##### 简要描述
+
+- 新建职位
+
+##### 请求URL
+- ` http://39.108.110.77/job-hunting/api `
+##### 请求方式
+- POST
+
+``` 
+{
+    "Module": "Controller",
+    "Action": "AddJob",
+    "Name": "高级web开发工程师",
+    "Pay": "15-20k",
+    "IcoUrl": "",
+    "Company": "华融科技",
+    "Scale": "500-2000人",
+    "Description": "团队氛围融洽，福利健全",
+    "Tags": [
+        "长沙",
+        "5-10年",
+        "本科"
+    ]
+}
+```
+##### 参数
+
+| 参数名   | 必选 | 类型   | 说明   |
+| :------- | :--- | :----- | ------ |
+| Module   | 是   | String | 模块名 |
+| Action   | 是   | String | 动作名 |
+| Name     | 是   | String | 职位名称   |
+| Pay | 是   | String | 薪资待遇 |
+| IcoUrl | 否   | String | 公司图标   |
+| Company | 是   | String | 公司名称   |
+| Scale | 否   | String | 公司规模   |
+| Description | 否   | String | 描述   |
+| Tags | 否   | StringArray | 职位标签列表   |
+
+##### 返回示例
+
+``` 
+  {
+    "Success"
+  }
+```

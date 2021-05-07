@@ -55,7 +55,7 @@ var HandlerMap map[string]Handler
 func init() {
 	Controller := new(Controller)
 	HandlerMap = map[string]Handler{
-		"Controller.Test": Controller.AddJob,
+		"Controller.AddJob": Controller.AddJob,
 	}
 }
 
