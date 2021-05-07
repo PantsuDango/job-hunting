@@ -20,3 +20,13 @@ func (SocialDB) CreateUser(user tables.User) error {
 	err := exeDB.Create(&user).Error
 	return err
 }
+
+func (SocialDB) CreateJob(job *tables.Job) error {
+	err := exeDB.Create(&job).Error
+	return err
+}
+
+func (SocialDB) CreateJobTagMap(job_tag_map tables.JobTagMap) error {
+	err := exeDB.Create(&job_tag_map).Error
+	return err
+}

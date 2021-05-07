@@ -3,22 +3,22 @@ package tables
 import "time"
 
 type User struct {
-	ID        int       `json:"ID"          form:"ID"          gorm:"column:id"`
-	Nick      string    `json:"Nick"        form:"Nick"        gorm:"column:nick"`
-	UserName  string    `json:"UserName"    form:"UserName"    gorm:"column:username"`
-	Password  string    `json:"Password"    form:"Password"    gorm:"column:password"`
-	Salt      string    `json:"Salt"        form:"Salt"        gorm:"column:salt"`
-	Sex       int       `json:"Sex"         form:"Sex"         gorm:"column:sex"`
-	HeadImage string    `json:"HeadImage"   form:"HeadImage"   gorm:"column:head_image"`
-	Email     string    `json:"Email"       form:"Email"       gorm:"column:email"`
-	Phone     string    `json:"Phone"       form:"Phone"       gorm:"column:phone"`
-	Birthday  string    `json:"Birthday"    form:"Birthday"    gorm:"column:birthday"`
-	Degree    string    `json:"Degree"      form:"Degree"      gorm:"column:degree"`
-	Job       string    `json:"Job"         form:"Job"         gorm:"column:job"`
-	Address   string    `json:"Address"     form:"Address"     gorm:"column:Address"`
-	Status    int       `json:"Status"      form:"Status"      gorm:"column:status"`
-	CreatedAt time.Time `json:"CreateTime"  form:"CreateTime"  gorm:"column:createtime"`
-	UpdatedAt time.Time `json:"UpdateTime"  form:"UpdateTime"  gorm:"column:lastupdate"`
+	ID        int       `json:"ID"          gorm:"column:id"`
+	Nick      string    `json:"Nick"        gorm:"column:nick"`
+	UserName  string    `json:"UserName"    gorm:"column:username"`
+	Password  string    `json:"Password"    gorm:"column:password"`
+	Salt      string    `json:"Salt"        gorm:"column:salt"`
+	Sex       int       `json:"Sex"         gorm:"column:sex"`
+	HeadImage string    `json:"HeadImage"   gorm:"column:head_image"`
+	Email     string    `json:"Email"       gorm:"column:email"`
+	Phone     string    `json:"Phone"       gorm:"column:phone"`
+	Birthday  string    `json:"Birthday"    gorm:"column:birthday"`
+	Degree    string    `json:"Degree"      gorm:"column:degree"`
+	Job       string    `json:"Job"         gorm:"column:job"`
+	Address   string    `json:"Address"     gorm:"column:Address"`
+	Status    int       `json:"Status"      gorm:"column:status"`
+	CreatedAt time.Time `json:"CreateTime"  gorm:"column:createtime"`
+	UpdatedAt time.Time `json:"UpdateTime"  gorm:"column:lastupdate"`
 }
 
 func (User) TableName() string {
@@ -26,15 +26,15 @@ func (User) TableName() string {
 }
 
 type Job struct {
-	ID          int       `json:"ID"           form:"ID"           gorm:"column:id"`
-	Name        string    `json:"Name"         form:"Name"         gorm:"column:name"`
-	Pay         string    `json:"Pay"          form:"Pay"          gorm:"column:pay"`
-	IcoUrl      string    `json:"IcoUrl"       form:"IcoUrl"       gorm:"column:ico_url"`
-	Company     string    `json:"Company"      form:"Company"      gorm:"column:company"`
-	Scale       string    `json:"Scale"        form:"Scale"        gorm:"column:scale"`
-	Description string    `json:"Description"  form:"Description"  gorm:"column:description"`
-	CreatedAt   time.Time `json:"CreateTime"   form:"CreateTime"   gorm:"column:createtime"`
-	UpdatedAt   time.Time `json:"UpdateTime"   form:"UpdateTime"   gorm:"column:lastupdate"`
+	ID          int       `json:"ID"           gorm:"column:id"`
+	Name        string    `json:"Name"         gorm:"column:name"`
+	Pay         string    `json:"Pay"          gorm:"column:pay"`
+	IcoUrl      string    `json:"IcoUrl"       gorm:"column:ico_url"`
+	Company     string    `json:"Company"      gorm:"column:company"`
+	Scale       string    `json:"Scale"        gorm:"column:scale"`
+	Description string    `json:"Description"  gorm:"column:description"`
+	CreatedAt   time.Time `json:"CreateTime"   gorm:"column:createtime"`
+	UpdatedAt   time.Time `json:"UpdateTime"   gorm:"column:lastupdate"`
 }
 
 func (Job) TableName() string {
@@ -42,10 +42,10 @@ func (Job) TableName() string {
 }
 
 type JobTagMap struct {
-	ID        int       `json:"ID"          form:"ID"          gorm:"column:id"`
-	JobId     int       `json:"JobId"       form:"JobId"       gorm:"column:job_id"`
-	Tag       string    `json:"Tag"         form:"Tag"         gorm:"column:tag"`
-	CreatedAt time.Time `json:"CreateTime"  form:"CreateTime"  gorm:"column:createtime"`
+	ID        int       `json:"ID"          gorm:"column:id"`
+	JobId     int       `json:"JobId"       gorm:"column:job_id"`
+	Tag       string    `json:"Tag"         gorm:"column:tag"`
+	CreatedAt time.Time `json:"CreateTime"  gorm:"column:createtime"`
 }
 
 func (JobTagMap) TableName() string {
@@ -53,16 +53,16 @@ func (JobTagMap) TableName() string {
 }
 
 type Resume struct {
-	ID             int       `json:"ID"              form:"ID"              gorm:"column:id"`
-	UserId         int       `json:"UserId"          form:"UserId"          gorm:"column:user_id"`
-	State          string    `json:"State"           form:"State"           gorm:"column:state"`
-	City           string    `json:"City"            form:"City"            gorm:"column:city"`
-	Identity       string    `json:"Identity"        form:"Identity"        gorm:"column:identity"`
-	Intention      string    `json:"Intention"       form:"Intention"       gorm:"column:intention"`
-	Advantage      string    `json:"Advantage"       form:"Advantage"       gorm:"column:advantage"`
-	WorkExperience string    `json:"WorkExperience"  form:"WorkExperience"  gorm:"column:work_experience"`
-	CreatedAt      time.Time `json:"CreateTime"      form:"CreateTime"      gorm:"column:createtime"`
-	UpdatedAt      time.Time `json:"UpdateTime"      form:"UpdateTime"      gorm:"column:lastupdate"`
+	ID             int       `json:"ID"              gorm:"column:id"`
+	UserId         int       `json:"UserId"          gorm:"column:user_id"`
+	State          string    `json:"State"           gorm:"column:state"`
+	City           string    `json:"City"            gorm:"column:city"`
+	Identity       string    `json:"Identity"        gorm:"column:identity"`
+	Intention      string    `json:"Intention"       gorm:"column:intention"`
+	Advantage      string    `json:"Advantage"       gorm:"column:advantage"`
+	WorkExperience string    `json:"WorkExperience"  gorm:"column:work_experience"`
+	CreatedAt      time.Time `json:"CreateTime"      gorm:"column:createtime"`
+	UpdatedAt      time.Time `json:"UpdateTime"      gorm:"column:lastupdate"`
 }
 
 func (Resume) TableName() string {
@@ -70,13 +70,13 @@ func (Resume) TableName() string {
 }
 
 type ResumeEducationMap struct {
-	ID                int       `json:"ID"                 form:"ID"                 gorm:"column:id"`
-	ResumeId          int       `json:"ResumeId"           form:"ResumeId"           gorm:"column:resume_id"`
-	SchoolName        string    `json:"SchoolName"         form:"SchoolName"         gorm:"column:school_name"`
-	MatriculationTime string    `json:"MatriculationTime"  form:"MatriculationTime"  gorm:"column:matriculation_time"`
-	GraduationTime    string    `json:"GraduationTime"     form:"GraduationTime"     gorm:"column:graduation_time"`
-	CreatedAt         time.Time `json:"CreateTime"         form:"CreateTime"         gorm:"column:createtime"`
-	UpdatedAt         time.Time `json:"UpdateTime"         form:"UpdateTime"         gorm:"column:lastupdate"`
+	ID                int       `json:"ID"                 gorm:"column:id"`
+	ResumeId          int       `json:"ResumeId"           gorm:"column:resume_id"`
+	SchoolName        string    `json:"SchoolName"         gorm:"column:school_name"`
+	MatriculationTime string    `json:"MatriculationTime"  gorm:"column:matriculation_time"`
+	GraduationTime    string    `json:"GraduationTime"     gorm:"column:graduation_time"`
+	CreatedAt         time.Time `json:"CreateTime"         gorm:"column:createtime"`
+	UpdatedAt         time.Time `json:"UpdateTime"         gorm:"column:lastupdate"`
 }
 
 func (ResumeEducationMap) TableName() string {
@@ -84,13 +84,13 @@ func (ResumeEducationMap) TableName() string {
 }
 
 type JobExpectation struct {
-	ID        int       `json:"ID"          form:"ID"          gorm:"column:id"`
-	UserId    int       `json:"UserId"      form:"UserId"      gorm:"column:user_id"`
-	JobTags   string    `json:"JobTags"     form:"JobTags"     gorm:"column:job_tags"`
-	Pay       string    `json:"Pay"         form:"Pay"         gorm:"column:pay"`
-	City      string    `json:"City"        form:"City"        gorm:"column:city"`
-	CreatedAt time.Time `json:"CreateTime"  form:"CreateTime"  gorm:"column:createtime"`
-	UpdatedAt time.Time `json:"UpdateTime"  form:"UpdateTime"  gorm:"column:lastupdate"`
+	ID        int       `json:"ID"          gorm:"column:id"`
+	UserId    int       `json:"UserId"      gorm:"column:user_id"`
+	JobTags   string    `json:"JobTags"     gorm:"column:job_tags"`
+	Pay       string    `json:"Pay"         gorm:"column:pay"`
+	City      string    `json:"City"        gorm:"column:city"`
+	CreatedAt time.Time `json:"CreateTime"  gorm:"column:createtime"`
+	UpdatedAt time.Time `json:"UpdateTime"  gorm:"column:lastupdate"`
 }
 
 func (JobExpectation) TableName() string {
@@ -98,10 +98,10 @@ func (JobExpectation) TableName() string {
 }
 
 type DeliverRecord struct {
-	ID        int       `json:"ID"          form:"ID"          gorm:"column:id"`
-	UserId    int       `json:"UserId"      form:"UserId"      gorm:"column:user_id"`
-	JobId     int       `json:"JobId"       form:"JobId"       gorm:"column:job_id"`
-	CreatedAt time.Time `json:"CreateTime"  form:"CreateTime"  gorm:"column:createtime"`
+	ID        int       `json:"ID"          gorm:"column:id"`
+	UserId    int       `json:"UserId"      gorm:"column:user_id"`
+	JobId     int       `json:"JobId"       gorm:"column:job_id"`
+	CreatedAt time.Time `json:"CreateTime"  gorm:"column:createtime"`
 }
 
 func (DeliverRecord) TableName() string {
