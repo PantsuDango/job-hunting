@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
 	"job-hunting/model/params"
+	"job-hunting/model/result"
 	"job-hunting/model/tables"
 	"net/http"
 )
@@ -54,4 +55,35 @@ func (Controller Controller) AddJob(ctx *gin.Context, user tables.User) {
 	}
 
 	JSONSuccess(ctx, http.StatusOK, "Success")
+}
+
+// 查询岗位列表
+func (Controller Controller) ListJob(ctx *gin.Context, user tables.User) {
+
+	// 校验前端传的参数是否符合预期
+	var ListJobParams params.ListJobParams
+	if err := ctx.ShouldBindBodyWith(&ListJobParams, binding.JSON); err != nil {
+		JSONFail(ctx, http.StatusOK, IllegalRequestParameter, "Invalid json or illegal request parameter", gin.H{
+			"Code":    IncompleteParameters,
+			"Message": err.Error(),
+		})
+		return
+	}
+
+	// 查询工作岗位
+	jobs, count := Controller.SocialDB.SelectJob(ListJobParams.Offset, ListJobParams.Limit)
+	for index, _ := range jobs {
+		jobs[index].Createtime = jobs[index].CreatedAt.Format("2006-01-02 15:04:05")
+		// 查询岗位标签
+		job_tag_map := Controller.SocialDB.SelectJobTagMapByJobId(jobs[index].Id)
+		for _, tmp := range job_tag_map {
+			jobs[index].Tags = append(jobs[index].Tags, tmp.Tag)
+		}
+	}
+
+	var ListJob result.ListJob
+	ListJob.ListJob = jobs
+	ListJob.Count = count
+
+	JSONSuccess(ctx, http.StatusOK, ListJob)
 }
