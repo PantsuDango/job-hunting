@@ -59,6 +59,7 @@ func init() {
 		"Controller.ListJob":    Controller.ListJob,
 		"Controller.JobInfo":    Controller.JobInfo,
 		"Controller.DeliverJob": Controller.DeliverJob,
+		"Controller.UserInfo":   Controller.UserInfo,
 	}
 }
 

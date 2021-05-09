@@ -459,3 +459,52 @@
     "Success"
 }
 ```
+
+
+
+
+### 用户个人信息
+
+
+##### 简要描述
+
+- 用户个人信息
+
+##### 请求URL
+- ` http://39.108.110.77/job-hunting/api `
+##### 请求方式
+- POST
+
+``` 
+{
+    "Module": "Controller",
+    "Action": "UserInfo"
+}
+```
+##### 参数
+
+| 参数名   | 必选 | 类型   | 说明   |
+| :------- | :--- | :----- | ------ |
+| Module   | 是   | String | 模块名 |
+| Action   | 是   | String | 动作名 |
+
+##### 返回示例
+
+``` 
+{
+    "DeliverCount": 1,
+    "UserInfo": {
+        "ID": 1,
+        "Nick": "叶叶",
+        "UserName": "inyin",
+        "Sex": 0,
+        "HeadImage": "",
+        "Email": "",
+        "Phone": "",
+        "Birthday": "",
+        "Degree": "",
+        "Job": "",
+        "Address": ""
+    }
+}
+```

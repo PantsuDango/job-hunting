@@ -72,3 +72,9 @@ func (SocialDB) CreateDeliverRecord(deliver_record tables.DeliverRecord) error {
 	err := exeDB.Create(&deliver_record).Error
 	return err
 }
+
+func (SocialDB) SelectDeliverRecordCount(user_id int) int {
+	var count int
+	exeDB.Model(&tables.DeliverRecord{}).Where("user_id = ?", user_id).Count(&count)
+	return count
+}

@@ -167,3 +167,25 @@ func (Controller Controller) DeliverJob(ctx *gin.Context, user tables.User) {
 
 	JSONSuccess(ctx, http.StatusOK, "Success")
 }
+
+// 用户个人信息
+func (Controller Controller) UserInfo(ctx *gin.Context, user tables.User) {
+
+	// 用户信息
+	var UserInfo result.UserInfo
+	UserInfo.UserInfo.ID = user.ID
+	UserInfo.UserInfo.Sex = user.Sex
+	UserInfo.UserInfo.Job = user.Job
+	UserInfo.UserInfo.HeadImage = user.HeadImage
+	UserInfo.UserInfo.Phone = user.Phone
+	UserInfo.UserInfo.Email = user.Email
+	UserInfo.UserInfo.Nick = user.Nick
+	UserInfo.UserInfo.Address = user.Address
+	UserInfo.UserInfo.Birthday = user.Birthday
+	UserInfo.UserInfo.Degree = user.Degree
+	UserInfo.UserInfo.UserName = user.UserName
+	// 用户投递简历数
+	UserInfo.DeliverCount = Controller.SocialDB.SelectDeliverRecordCount(user.ID)
+
+	JSONSuccess(ctx, http.StatusOK, UserInfo)
+}
