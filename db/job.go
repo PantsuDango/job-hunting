@@ -62,3 +62,8 @@ func (SocialDB) SelectDeliverRecord(job_id, user_id int) int {
 	exeDB.Model(&tables.DeliverRecord{}).Where("job_id = ? AND user_id = ?", job_id, user_id).Count(&count)
 	return count
 }
+
+func (SocialDB) CreateDeliverRecord(deliver_record tables.DeliverRecord) error {
+	err := exeDB.Create(&deliver_record).Error
+	return err
+}

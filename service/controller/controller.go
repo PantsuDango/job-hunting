@@ -128,3 +128,42 @@ func (Controller Controller) JobInfo(ctx *gin.Context, user tables.User) {
 
 	JSONSuccess(ctx, http.StatusOK, job)
 }
+
+// 简历投递
+func (Controller Controller) DeliverJob(ctx *gin.Context, user tables.User) {
+
+	// 校验前端传的参数是否符合预期
+	var JobInfoParams params.JobInfoParams
+	if err := ctx.ShouldBindBodyWith(&JobInfoParams, binding.JSON); err != nil {
+		JSONFail(ctx, http.StatusOK, IllegalRequestParameter, "Invalid json or illegal request parameter", gin.H{
+			"Code":    IncompleteParameters,
+			"Message": err.Error(),
+		})
+		return
+	}
+
+	// 检验岗位是否存在
+	_, err := Controller.SocialDB.SelectJobById(JobInfoParams.ID)
+	if err != nil {
+		JSONFail(ctx, http.StatusOK, AccessDBError, "Access job table error.", gin.H{
+			"Code":    AccessDBError,
+			"Message": err.Error(),
+		})
+		return
+	}
+
+	// 创建岗位投递记录
+	var deliver_record tables.DeliverRecord
+	deliver_record.UserId = user.ID
+	deliver_record.JobId = JobInfoParams.ID
+	err = Controller.SocialDB.CreateDeliverRecord(deliver_record)
+	if err != nil {
+		JSONFail(ctx, http.StatusOK, AccessDBError, "Access deliver_record table error.", gin.H{
+			"Code":    AccessDBError,
+			"Message": err.Error(),
+		})
+		return
+	}
+
+	JSONSuccess(ctx, http.StatusOK, "Success")
+}

@@ -403,3 +403,41 @@
     "Isdeliver": false
 }
 ```
+
+
+
+
+### 职位投递
+
+
+##### 简要描述
+
+- 职位投递
+
+##### 请求URL
+- ` http://39.108.110.77/job-hunting/api `
+##### 请求方式
+- POST
+
+``` 
+{
+    "Module": "Controller",
+    "Action": "DeliverJob",
+    "ID": 1
+}
+```
+##### 参数
+
+| 参数名   | 必选 | 类型   | 说明   |
+| :------- | :--- | :----- | ------ |
+| Module   | 是   | String | 模块名 |
+| Action   | 是   | String | 动作名 |
+| ID   | 是   | Int | 该职位ID   |
+
+##### 返回示例
+
+``` 
+{
+    "Success"
+}
+```
