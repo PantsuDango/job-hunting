@@ -75,7 +75,7 @@ func (Controller Controller) ListJob(ctx *gin.Context, user tables.User) {
 	for index, _ := range jobs {
 		jobs[index].Createtime = jobs[index].CreatedAt.Format("2006-01-02 15:04:05")
 		// 查询岗位标签
-		job_tag_map := Controller.SocialDB.SelectJobTagMapByJobId(jobs[index].Id)
+		job_tag_map := Controller.SocialDB.SelectJobTagMapByJobId(jobs[index].ID)
 		for _, tmp := range job_tag_map {
 			jobs[index].Tags = append(jobs[index].Tags, tmp.Tag)
 		}
