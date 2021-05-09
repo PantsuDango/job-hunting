@@ -717,3 +717,43 @@
     "Success"
 }
 ```
+
+
+
+
+### 修改密码
+
+
+##### 简要描述
+
+- 修改密码
+
+##### 请求URL
+- ` http://39.108.110.77/job-hunting/api `
+##### 请求方式
+- POST
+
+``` 
+{
+    "Module": "Controller",
+    "Action": "ModifyPassword",
+    "OldPassword": "12345",
+    "NewPassword": "123456"
+}
+```
+##### 参数
+
+| 参数名   | 必选 | 类型   | 说明   |
+| :------- | :--- | :----- | ------ |
+| Module   | 是   | String | 模块名 |
+| Action   | 是   | String | 动作名 |
+| OldPassword   | 是   | String | 旧密码 |
+| NewPassword   | 是   | String | 新密码 |
+
+##### 返回示例
+
+``` 
+{
+    "Success"
+}
+```

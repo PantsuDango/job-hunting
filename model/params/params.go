@@ -34,3 +34,8 @@ type ListJobParams struct {
 type JobInfoParams struct {
 	ID int `json:"ID"  binding:"required"`
 }
+
+type ModifyPasswordParams struct {
+	OldPassword string `json:"OldPassword"  binding:"required"`
+	NewPassword string `json:"NewPassword"  binding:"required"`
+}

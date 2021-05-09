@@ -1,6 +1,8 @@
 package controller
 
 import (
+	"crypto/md5"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
 	"job-hunting/model/params"
@@ -403,6 +405,46 @@ func (Controller Controller) ModifyJobExpectation(ctx *gin.Context, user tables.
 	err := Controller.SocialDB.UpdateJobExpectation(job_expectation)
 	if err != nil {
 		JSONFail(ctx, http.StatusOK, AccessDBError, "Access job_expectation table error.", gin.H{
+			"Code":    AccessDBError,
+			"Message": err.Error(),
+		})
+		return
+	}
+
+	JSONSuccess(ctx, http.StatusOK, "Success")
+}
+
+// 修改密码
+func (Controller Controller) ModifyPassword(ctx *gin.Context, user tables.User) {
+
+	// 校验前端传的参数是否符合预期
+	var ModifyPasswordParams params.ModifyPasswordParams
+	if err := ctx.ShouldBindBodyWith(&ModifyPasswordParams, binding.JSON); err != nil {
+		JSONFail(ctx, http.StatusOK, IllegalRequestParameter, "Invalid json or illegal request parameter", gin.H{
+			"Code":    IncompleteParameters,
+			"Message": err.Error(),
+		})
+		return
+	}
+
+	// 检验旧密码
+	s := ModifyPasswordParams.OldPassword + user.Salt
+	if fmt.Sprintf("%x", md5.Sum([]byte(s))) == user.Password {
+		user.Salt = GetRandomString(8)
+		s := ModifyPasswordParams.NewPassword + user.Salt
+		user.Password = fmt.Sprintf("%x", md5.Sum([]byte(s)))
+	} else {
+		JSONFail(ctx, http.StatusOK, PasswordError, "OldPassword error.", gin.H{
+			"Code":    "InvalidJSON",
+			"Message": "OldPassword error.",
+		})
+		return
+	}
+
+	// 修改密码
+	err := Controller.SocialDB.UpdateUser(user)
+	if err != nil {
+		JSONFail(ctx, http.StatusOK, AccessDBError, "Access user table error.", gin.H{
 			"Code":    AccessDBError,
 			"Message": err.Error(),
 		})

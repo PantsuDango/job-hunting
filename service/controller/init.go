@@ -64,6 +64,7 @@ func init() {
 		"Controller.ModifyResume":         Controller.ModifyResume,
 		"Controller.ModifyEducation":      Controller.ModifyEducation,
 		"Controller.ModifyJobExpectation": Controller.ModifyJobExpectation,
+		"Controller.ModifyPassword":       Controller.ModifyPassword,
 	}
 }
 
