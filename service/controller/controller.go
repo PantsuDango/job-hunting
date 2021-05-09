@@ -270,3 +270,57 @@ func (Controller Controller) ModifyUser(ctx *gin.Context, user tables.User) {
 
 	JSONSuccess(ctx, http.StatusOK, "Success")
 }
+
+// 修改简历详情
+func (Controller Controller) ModifyResume(ctx *gin.Context, user tables.User) {
+
+	// 校验前端传的参数是否符合预期
+	var ResumeInfoParams result.ResumeInfo
+	if err := ctx.ShouldBindBodyWith(&ResumeInfoParams, binding.JSON); err != nil {
+		JSONFail(ctx, http.StatusOK, IllegalRequestParameter, "Invalid json or illegal request parameter", gin.H{
+			"Code":    IncompleteParameters,
+			"Message": err.Error(),
+		})
+		return
+	}
+
+	// 查询简历详情
+	resume := Controller.SocialDB.SelectResume(user.ID)
+	resume.UserId = user.ID
+	// 改所在城市
+	if len(ResumeInfoParams.City) > 0 {
+		resume.City = ResumeInfoParams.City
+	}
+	// 改身份
+	if len(ResumeInfoParams.Identity) > 0 {
+		resume.Identity = ResumeInfoParams.Identity
+	}
+	// 改求职状态
+	if len(ResumeInfoParams.State) > 0 {
+		resume.State = ResumeInfoParams.State
+	}
+	// 改个人优势
+	if len(ResumeInfoParams.Advantage) > 0 {
+		resume.Advantage = ResumeInfoParams.Advantage
+	}
+	// 改求职意向
+	if len(ResumeInfoParams.Intention) > 0 {
+		resume.Intention = ResumeInfoParams.Intention
+	}
+	// 改工作经历
+	if len(ResumeInfoParams.WorkExperience) > 0 {
+		resume.WorkExperience = ResumeInfoParams.WorkExperience
+	}
+
+	// 修改简历详情
+	err := Controller.SocialDB.UpdateResume(resume)
+	if err != nil {
+		JSONFail(ctx, http.StatusOK, AccessDBError, "Access resume table error.", gin.H{
+			"Code":    AccessDBError,
+			"Message": err.Error(),
+		})
+		return
+	}
+
+	JSONSuccess(ctx, http.StatusOK, "Success")
+}

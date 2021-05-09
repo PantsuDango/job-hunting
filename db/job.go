@@ -101,3 +101,8 @@ func (SocialDB) UpdateUser(user tables.User) error {
 	err := exeDB.Save(&user).Error
 	return err
 }
+
+func (SocialDB) UpdateResume(resume tables.Resume) error {
+	err := exeDB.Save(&resume).Error
+	return err
+}

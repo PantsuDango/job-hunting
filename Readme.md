@@ -582,3 +582,52 @@
     "Success"
 }
 ```
+
+
+
+
+
+### 修改简历详情
+
+
+##### 简要描述
+
+- 修改简历详情
+
+##### 请求URL
+- ` http://39.108.110.77/job-hunting/api `
+##### 请求方式
+- POST
+
+``` 
+{
+    "Module": "Controller",
+    "Action": "ModifyResume",
+    "State": "待就业",
+    "City": "广东深圳",
+    "Identity": "学生",
+    "Intention": "后端开发",
+    "Advantage": "熟练使用python、java等编程语言",
+    "WorkExperience": "一年后端开发工作经验"
+}
+```
+##### 参数
+
+| 参数名   | 必选 | 类型   | 说明   |
+| :------- | :--- | :----- | ------ |
+| Module   | 是   | String | 模块名 |
+| Action   | 是   | String | 动作名 |
+| State   | 否   | String | 求职状态 |
+| City   | 否   | String | 所在城市 |
+| Identity   | 否   | String | 身份 |
+| Intention   | 否   | String | 求职意向 |
+| Advantage   | 否   | String | 个人优势 |
+| WorkExperience   | 否   | String | 工作经验 |
+
+##### 返回示例
+
+``` 
+{
+    "Success"
+}
+```
