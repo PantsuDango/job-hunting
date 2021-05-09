@@ -35,14 +35,12 @@ func (SocialDB) SelectJob(Offset, Limit int, Keyword string) ([]params.JobParams
 	if Limit == 0 {
 		Limit = 10
 	}
-	exeDB.LogMode(true)
 	if len(Keyword) > 0 {
 		Keyword := "%" + Keyword + "%"
 		exeDB.Where("name like ?", Keyword).Offset(Offset).Limit(Limit).Order("createtime desc").Find(&job)
 	} else {
 		exeDB.Offset(Offset).Limit(Limit).Order("createtime desc").Find(&job)
 	}
-	exeDB.LogMode(false)
 	exeDB.Model(&[]params.JobParams{}).Count(&count)
 	return job, count
 }
