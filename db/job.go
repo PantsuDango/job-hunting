@@ -106,3 +106,8 @@ func (SocialDB) UpdateResume(resume tables.Resume) error {
 	err := exeDB.Save(&resume).Error
 	return err
 }
+
+func (SocialDB) UpdateUserEducationMap(user_education_map tables.UserEducationMap) error {
+	err := exeDB.Save(&user_education_map).Error
+	return err
+}

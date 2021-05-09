@@ -631,3 +631,47 @@
     "Success"
 }
 ```
+
+
+
+
+### 修改教育经历
+
+
+##### 简要描述
+
+- 修改教育经历
+
+##### 请求URL
+- ` http://39.108.110.77/job-hunting/api `
+##### 请求方式
+- POST
+
+``` 
+{
+    "Module": "Controller",
+    "Action": "ModifyEducation",
+    "SchoolName": "上海电力大学",
+    "Major": "电子科学与技术",
+    "MatriculationTime": "2013-09",
+    "GraduationTime": "2017-06"
+}
+```
+##### 参数
+
+| 参数名   | 必选 | 类型   | 说明   |
+| :------- | :--- | :----- | ------ |
+| Module   | 是   | String | 模块名 |
+| Action   | 是   | String | 动作名 |
+| SchoolName   | 否   | String | 学校名称 |
+| Major   | 否   | String | 专业名称 |
+| MatriculationTime   | 否   | String | 入学时间 |
+| GraduationTime   | 否   | String | 毕业时间 |
+
+##### 返回示例
+
+``` 
+{
+    "Success"
+}
+```

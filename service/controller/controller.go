@@ -324,3 +324,49 @@ func (Controller Controller) ModifyResume(ctx *gin.Context, user tables.User) {
 
 	JSONSuccess(ctx, http.StatusOK, "Success")
 }
+
+// 修改教育经历
+func (Controller Controller) ModifyEducation(ctx *gin.Context, user tables.User) {
+
+	// 校验前端传的参数是否符合预期
+	var EducationInfoParams result.EducationInfo
+	if err := ctx.ShouldBindBodyWith(&EducationInfoParams, binding.JSON); err != nil {
+		JSONFail(ctx, http.StatusOK, IllegalRequestParameter, "Invalid json or illegal request parameter", gin.H{
+			"Code":    IncompleteParameters,
+			"Message": err.Error(),
+		})
+		return
+	}
+
+	// 查询教育经历
+	user_education_map := Controller.SocialDB.SelectUserEducationMap(user.ID)
+	user_education_map.UserId = user.ID
+	// 改毕业时间
+	if len(EducationInfoParams.GraduationTime) > 0 {
+		user_education_map.GraduationTime = EducationInfoParams.GraduationTime
+	}
+	// 改专业名称
+	if len(EducationInfoParams.Major) > 0 {
+		user_education_map.Major = EducationInfoParams.Major
+	}
+	// 改入学时间
+	if len(EducationInfoParams.MatriculationTime) > 0 {
+		user_education_map.MatriculationTime = EducationInfoParams.MatriculationTime
+	}
+	// 改学校名称
+	if len(EducationInfoParams.SchoolName) > 0 {
+		user_education_map.SchoolName = EducationInfoParams.SchoolName
+	}
+
+	// 修改教育经历
+	err := Controller.SocialDB.UpdateUserEducationMap(user_education_map)
+	if err != nil {
+		JSONFail(ctx, http.StatusOK, AccessDBError, "Access user_education_map table error.", gin.H{
+			"Code":    AccessDBError,
+			"Message": err.Error(),
+		})
+		return
+	}
+
+	JSONSuccess(ctx, http.StatusOK, "Success")
+}
