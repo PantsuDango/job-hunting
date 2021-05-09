@@ -505,6 +505,25 @@
         "Degree": "",
         "Job": "",
         "Address": ""
+    },
+    "ResumeInfo": {
+        "State": "",
+        "City": "",
+        "Identity": "",
+        "Intention": "",
+        "Advantage": "",
+        "WorkExperience": ""
+    },
+    "EducationInfo": {
+        "SchoolName": "",
+        "Major": "",
+        "MatriculationTime": "",
+        "GraduationTime": ""
+    },
+    "JobExpectation": {
+        "JobTags": "",
+        "Pay": "",
+        "City": ""
     }
 }
 ```
