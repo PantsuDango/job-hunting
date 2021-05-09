@@ -63,6 +63,7 @@ CREATE TABLE `user_education_map` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `user_id` int(11) NOT NULL COMMENT '用户id',
     `school_name` varchar(32) DEFAULT NULL COMMENT '学校名称',
+    `major` varchar(32) DEFAULT NULL COMMENT '专业名称',
     `matriculation_time` varchar(32) DEFAULT NULL COMMENT '入学时间',
     `graduation_time` varchar(32) DEFAULT NULL COMMENT '毕业时间',
     `createtime` datetime NOT NULL COMMENT '创建时间',

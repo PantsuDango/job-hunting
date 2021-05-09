@@ -78,3 +78,21 @@ func (SocialDB) SelectDeliverRecordCount(user_id int) int {
 	exeDB.Model(&tables.DeliverRecord{}).Where("user_id = ?", user_id).Count(&count)
 	return count
 }
+
+func (SocialDB) SelectResume(user_id int) tables.Resume {
+	var resume tables.Resume
+	exeDB.Where("user_id = ?", user_id).Find(&resume)
+	return resume
+}
+
+func (SocialDB) SelectUserEducationMap(user_id int) tables.UserEducationMap {
+	var user_education_map tables.UserEducationMap
+	exeDB.Where("user_id = ?", user_id).Find(&user_education_map)
+	return user_education_map
+}
+
+func (SocialDB) SelectJobExpectation(user_id int) tables.JobExpectation {
+	var job_expectation tables.JobExpectation
+	exeDB.Where("user_id = ?", user_id).Find(&job_expectation)
+	return job_expectation
+}

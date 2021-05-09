@@ -171,8 +171,9 @@ func (Controller Controller) DeliverJob(ctx *gin.Context, user tables.User) {
 // 用户个人信息
 func (Controller Controller) UserInfo(ctx *gin.Context, user tables.User) {
 
-	// 用户信息
 	var UserInfo result.UserInfo
+
+	// 用户个人信息
 	UserInfo.UserInfo.ID = user.ID
 	UserInfo.UserInfo.Sex = user.Sex
 	UserInfo.UserInfo.Job = user.Job
@@ -186,6 +187,25 @@ func (Controller Controller) UserInfo(ctx *gin.Context, user tables.User) {
 	UserInfo.UserInfo.UserName = user.UserName
 	// 用户投递简历数
 	UserInfo.DeliverCount = Controller.SocialDB.SelectDeliverRecordCount(user.ID)
+	// 查询简历详情
+	resume := Controller.SocialDB.SelectResume(user.ID)
+	UserInfo.ResumeInfo.City = resume.City
+	UserInfo.ResumeInfo.Identity = resume.Identity
+	UserInfo.ResumeInfo.State = resume.State
+	UserInfo.ResumeInfo.Advantage = resume.Advantage
+	UserInfo.ResumeInfo.Intention = resume.Intention
+	UserInfo.ResumeInfo.WorkExperience = resume.WorkExperience
+	// 查询教育经历
+	user_education_map := Controller.SocialDB.SelectUserEducationMap(user.ID)
+	UserInfo.EducationInfo.GraduationTime = user_education_map.GraduationTime
+	UserInfo.EducationInfo.Major = user_education_map.Major
+	UserInfo.EducationInfo.MatriculationTime = user_education_map.MatriculationTime
+	UserInfo.EducationInfo.SchoolName = user_education_map.SchoolName
+	// 查询求职期望
+	job_expectation := Controller.SocialDB.SelectJobExpectation(user.ID)
+	UserInfo.JobExpectation.City = job_expectation.City
+	UserInfo.JobExpectation.JobTags = job_expectation.JobTags
+	UserInfo.JobExpectation.Pay = job_expectation.Pay
 
 	JSONSuccess(ctx, http.StatusOK, UserInfo)
 }

@@ -10,8 +10,11 @@ type ListJob struct {
 }
 
 type UserInfo struct {
-	DeliverCount int  `json:"DeliverCount"`
-	UserInfo     User `json:"UserInfo"`
+	DeliverCount   int            `json:"DeliverCount"`
+	UserInfo       User           `json:"UserInfo"`
+	ResumeInfo     ResumeInfo     `json:"ResumeInfo"`
+	EducationInfo  EducationInfo  `json:"EducationInfo"`
+	JobExpectation JobExpectation `json:"JobExpectation"`
 }
 
 type User struct {
@@ -26,4 +29,26 @@ type User struct {
 	Degree    string `json:"Degree"`
 	Job       string `json:"Job"`
 	Address   string `json:"Address"`
+}
+
+type ResumeInfo struct {
+	State          string `json:"State"`
+	City           string `json:"City"`
+	Identity       string `json:"Identity"`
+	Intention      string `json:"Intention"`
+	Advantage      string `json:"Advantage"`
+	WorkExperience string `json:"WorkExperience"`
+}
+
+type EducationInfo struct {
+	SchoolName        string `json:"SchoolName"`
+	Major             string `json:"Major"`
+	MatriculationTime string `json:"MatriculationTime"`
+	GraduationTime    string `json:"GraduationTime"`
+}
+
+type JobExpectation struct {
+	JobTags string `json:"JobTags"`
+	Pay     string `json:"Pay"`
+	City    string `json:"City"`
 }

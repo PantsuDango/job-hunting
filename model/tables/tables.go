@@ -69,18 +69,19 @@ func (Resume) TableName() string {
 	return "resume"
 }
 
-type ResumeEducationMap struct {
+type UserEducationMap struct {
 	ID                int       `json:"ID"                 gorm:"column:id"`
-	ResumeId          int       `json:"ResumeId"           gorm:"column:resume_id"`
+	UserId            int       `json:"UserId"             gorm:"column:user_id"`
 	SchoolName        string    `json:"SchoolName"         gorm:"column:school_name"`
+	Major             string    `json:"Major"              gorm:"column:major"`
 	MatriculationTime string    `json:"MatriculationTime"  gorm:"column:matriculation_time"`
 	GraduationTime    string    `json:"GraduationTime"     gorm:"column:graduation_time"`
 	CreatedAt         time.Time `json:"CreateTime"         gorm:"column:createtime"`
 	UpdatedAt         time.Time `json:"UpdateTime"         gorm:"column:lastupdate"`
 }
 
-func (ResumeEducationMap) TableName() string {
-	return "resume_education_map"
+func (UserEducationMap) TableName() string {
+	return "user_education_map"
 }
 
 type JobExpectation struct {
