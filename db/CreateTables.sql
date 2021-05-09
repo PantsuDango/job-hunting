@@ -90,3 +90,11 @@ CREATE TABLE `deliver_record` (
     PRIMARY KEY (`id`),
     UNIQUE KEY (`user_id`, `job_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COMMENT='简历投递情况表';
+
+CREATE TABLE `resume_file` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `user_id` int(11) NOT NULL COMMENT '用户id',
+    `resume_file_url` int(11) NOT NULL COMMENT '岗位id',
+    `createtime` datetime NOT NULL COMMENT '创建时间',
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COMMENT='用户附件简历表';
