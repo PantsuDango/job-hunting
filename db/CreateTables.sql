@@ -59,16 +59,17 @@ CREATE TABLE `resume` (
     UNIQUE KEY (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COMMENT='用户简历表';
 
-CREATE TABLE `resume_education_map` (
+CREATE TABLE `user_education_map` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
-    `resume_id` int(11) NOT NULL COMMENT '简历id',
+    `user_id` int(11) NOT NULL COMMENT '用户id',
     `school_name` varchar(32) DEFAULT NULL COMMENT '学校名称',
     `matriculation_time` varchar(32) DEFAULT NULL COMMENT '入学时间',
     `graduation_time` varchar(32) DEFAULT NULL COMMENT '毕业时间',
     `createtime` datetime NOT NULL COMMENT '创建时间',
     `lastupdate` datetime NOT NULL COMMENT '更新时间',
-    PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COMMENT='简历与教育经历映射表';
+    PRIMARY KEY (`id`),
+    UNIQUE KEY (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COMMENT='用户与教育经历映射表';
 
 CREATE TABLE `job_expectation` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -78,9 +79,9 @@ CREATE TABLE `job_expectation` (
     `city` varchar(32) DEFAULT NULL COMMENT '期望城市',
     `createtime` datetime NOT NULL COMMENT '创建时间',
     `lastupdate` datetime NOT NULL COMMENT '更新时间',
-    PRIMARY KEY (`id`)
+    PRIMARY KEY (`id`),
+    UNIQUE KEY (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COMMENT='求职期望表';
-
 
 CREATE TABLE `deliver_record` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -96,5 +97,6 @@ CREATE TABLE `resume_file` (
     `user_id` int(11) NOT NULL COMMENT '用户id',
     `resume_file_url` int(11) NOT NULL COMMENT '岗位id',
     `createtime` datetime NOT NULL COMMENT '创建时间',
-    PRIMARY KEY (`id`)
+    PRIMARY KEY (`id`),
+    UNIQUE KEY (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COMMENT='用户附件简历表';
