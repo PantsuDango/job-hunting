@@ -209,3 +209,64 @@ func (Controller Controller) UserInfo(ctx *gin.Context, user tables.User) {
 
 	JSONSuccess(ctx, http.StatusOK, UserInfo)
 }
+
+// 修改用户个人信息
+func (Controller Controller) ModifyUser(ctx *gin.Context, user tables.User) {
+
+	// 校验前端传的参数是否符合预期
+	var UserParams result.User
+	if err := ctx.ShouldBindBodyWith(&UserParams, binding.JSON); err != nil {
+		JSONFail(ctx, http.StatusOK, IllegalRequestParameter, "Invalid json or illegal request parameter", gin.H{
+			"Code":    IncompleteParameters,
+			"Message": err.Error(),
+		})
+		return
+	}
+	// 改性别
+	if UserParams.Sex != user.Sex {
+		user.Sex = UserParams.Sex
+	}
+	// 改职位
+	if len(UserParams.Job) > 0 {
+		user.Job = UserParams.Job
+	}
+	// 改头像
+	if len(UserParams.HeadImage) > 0 {
+		user.HeadImage = UserParams.HeadImage
+	}
+	// 改电话
+	if len(UserParams.Phone) > 0 {
+		user.Phone = UserParams.Phone
+	}
+	// 改邮箱
+	if len(UserParams.Email) > 0 {
+		user.Email = UserParams.Email
+	}
+	// 改姓名
+	if len(UserParams.Nick) > 0 {
+		user.Nick = UserParams.Nick
+	}
+	// 改家庭地址
+	if len(UserParams.Address) > 0 {
+		user.Address = UserParams.Address
+	}
+	// 改生日
+	if len(UserParams.Birthday) > 0 {
+		user.Birthday = UserParams.Birthday
+	}
+	// 改学历
+	if len(UserParams.Degree) > 0 {
+		user.Degree = UserParams.Degree
+	}
+	// 修改用户个人信息
+	err := Controller.SocialDB.UpdateUser(user)
+	if err != nil {
+		JSONFail(ctx, http.StatusOK, AccessDBError, "Access user table error.", gin.H{
+			"Code":    AccessDBError,
+			"Message": err.Error(),
+		})
+		return
+	}
+
+	JSONSuccess(ctx, http.StatusOK, "Success")
+}

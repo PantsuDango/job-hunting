@@ -527,3 +527,58 @@
     }
 }
 ```
+
+
+
+
+
+### 修改用户个人信息
+
+
+##### 简要描述
+
+- 修改用户个人信息
+
+##### 请求URL
+- ` http://39.108.110.77/job-hunting/api `
+##### 请求方式
+- POST
+
+``` 
+{
+    "Module": "Controller",
+    "Action": "ModifyUser",
+    "Nick": "叶叶",
+    "Sex": 2,
+    "HeadImage": "http://39.108.110.77/group1/default/20210510/03/04/5/2f06ce035298e9a230c891103029e096.jpg",
+    "Email": "394883561@qq.com",
+    "Phone": "13266871263",
+    "Birthday": "1994-10-31",
+    "Degree": "本科",
+    "Job": "保密",
+    "Address": "广东省深圳市南山区"
+}
+```
+##### 参数
+
+| 参数名   | 必选 | 类型   | 说明   |
+| :------- | :--- | :----- | ------ |
+| Module   | 是   | String | 模块名 |
+| Action   | 是   | String | 动作名 |
+| Nick   | 否   | String | 姓名 |
+| Sex   | 否   | Int | 性别: 0-保密, 1-男, 2-女 |
+| HeadImage   | 否   | String | 头像图片链接 |
+| Email   | 否   | String | 邮箱 |
+| Phone   | 否   | String | 手机 |
+| Birthday   | 否   | String | 生日 |
+| Degree   | 否   | String | 学历 |
+| Job   | 否   | String | 职位 |
+| Address   | 否   | String | 家庭地址 |
+
+##### 返回示例
+
+``` 
+{
+    "Success"
+}
+```

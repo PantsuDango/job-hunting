@@ -96,3 +96,8 @@ func (SocialDB) SelectJobExpectation(user_id int) tables.JobExpectation {
 	exeDB.Where("user_id = ?", user_id).Find(&job_expectation)
 	return job_expectation
 }
+
+func (SocialDB) UpdateUser(user tables.User) error {
+	err := exeDB.Save(&user).Error
+	return err
+}
