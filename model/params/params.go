@@ -8,7 +8,7 @@ type ModActIndex struct {
 }
 
 type JobParams struct {
-	Id          int       `json:"Id"`
+	ID          int       `json:"ID"           gorm:"column:id"`
 	Name        string    `json:"Name"         binding:"required"`
 	Pay         string    `json:"Pay"          binding:"required"`
 	IcoUrl      string    `json:"IcoUrl"`
