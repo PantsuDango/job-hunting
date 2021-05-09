@@ -282,8 +282,9 @@
 {
     "Module": "Controller",
     "Action": "ListJob",
-    "Offset": 1,
-    "Limit": 5
+    "Offset": 0,
+    "Limit": 5,
+    "Keyword": "开发"
 }
 ```
 ##### 参数
@@ -294,6 +295,7 @@
 | Action   | 是   | String | 动作名 |
 | Offset   | 否   | Int | 跳过的职位数   |
 | Limit    | 否   | Int | 显示的职位数, 默认10 |
+| Keyword   | 否   | String | 关键字查询 |
 
 ##### 返回示例
 
@@ -301,6 +303,22 @@
 {
     "Count": 4,
     "ListJob": [
+        {
+            "ID": 4,
+            "Name": "python开发工程师",
+            "Pay": "13-16k",
+            "IcoUrl": "",
+            "Company": "智宸科技",
+            "Scale": "50-200人",
+            "Description": "团队氛围融洽，福利健全",
+            "Tags": [
+                "程度",
+                "1-3年",
+                "本科"
+            ],
+            "Createtime": "2021-05-07 19:41:23",
+            "Isdeliver": false
+        },
         {
             "ID": 3,
             "Name": "java开发工程师",
@@ -347,7 +365,7 @@
                 "本科"
             ],
             "Createtime": "2021-05-07 19:32:41",
-            "Isdeliver": false
+            "Isdeliver": true
         }
     ]
 }

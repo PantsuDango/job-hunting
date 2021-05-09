@@ -26,8 +26,9 @@ func (JobParams) TableName() string {
 }
 
 type ListJobParams struct {
-	Offset int `json:"Offset"`
-	Limit  int `json:"Limit"`
+	Offset  int    `json:"Offset"`
+	Limit   int    `json:"Limit"`
+	Keyword string `json:"Keyword"`
 }
 
 type JobInfoParams struct {

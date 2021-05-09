@@ -29,13 +29,20 @@ func (SocialDB) CreateJob(job *tables.Job) error {
 	return err
 }
 
-func (SocialDB) SelectJob(Offset, Limit int) ([]params.JobParams, int) {
+func (SocialDB) SelectJob(Offset, Limit int, Keyword string) ([]params.JobParams, int) {
 	var job []params.JobParams
 	var count int
 	if Limit == 0 {
 		Limit = 10
 	}
-	exeDB.Offset(Offset).Limit(Limit).Order("createtime desc").Find(&job)
+	exeDB.LogMode(true)
+	if len(Keyword) > 0 {
+		Keyword := "%" + Keyword + "%"
+		exeDB.Where("name like ?", Keyword).Offset(Offset).Limit(Limit).Order("createtime desc").Find(&job)
+	} else {
+		exeDB.Offset(Offset).Limit(Limit).Order("createtime desc").Find(&job)
+	}
+	exeDB.LogMode(false)
 	exeDB.Model(&[]params.JobParams{}).Count(&count)
 	return job, count
 }

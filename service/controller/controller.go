@@ -71,7 +71,7 @@ func (Controller Controller) ListJob(ctx *gin.Context, user tables.User) {
 	}
 
 	// 查询工作岗位
-	jobs, count := Controller.SocialDB.SelectJob(ListJobParams.Offset, ListJobParams.Limit)
+	jobs, count := Controller.SocialDB.SelectJob(ListJobParams.Offset, ListJobParams.Limit, ListJobParams.Keyword)
 	for index, _ := range jobs {
 		jobs[index].Createtime = jobs[index].CreatedAt.Format("2006-01-02 15:04:05")
 		// 查询岗位标签
