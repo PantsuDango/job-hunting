@@ -111,3 +111,8 @@ func (SocialDB) UpdateUserEducationMap(user_education_map tables.UserEducationMa
 	err := exeDB.Save(&user_education_map).Error
 	return err
 }
+
+func (SocialDB) UpdateJobExpectation(job_expectation tables.JobExpectation) error {
+	err := exeDB.Save(&job_expectation).Error
+	return err
+}

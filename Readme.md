@@ -497,33 +497,33 @@
         "ID": 1,
         "Nick": "叶叶",
         "UserName": "inyin",
-        "Sex": 0,
-        "HeadImage": "",
-        "Email": "",
-        "Phone": "",
-        "Birthday": "",
-        "Degree": "",
-        "Job": "",
-        "Address": ""
+        "Sex": 2,
+        "HeadImage": "http://39.108.110.77/group1/default/20210510/03/04/5/2f06ce035298e9a230c891103029e096.jpg",
+        "Email": "394883561@qq.com",
+        "Phone": "13266871263",
+        "Birthday": "1994-10-31",
+        "Degree": "本科",
+        "Job": "保密",
+        "Address": "广东省深圳市南山区"
     },
     "ResumeInfo": {
-        "State": "",
-        "City": "",
-        "Identity": "",
-        "Intention": "",
-        "Advantage": "",
-        "WorkExperience": ""
+        "State": "待就业",
+        "City": "广东深圳",
+        "Identity": "学生",
+        "Intention": "后端开发",
+        "Advantage": "熟练使用python、java等编程语言",
+        "WorkExperience": "一年后端开发工作经验"
     },
     "EducationInfo": {
-        "SchoolName": "",
-        "Major": "",
-        "MatriculationTime": "",
-        "GraduationTime": ""
+        "SchoolName": "上海电力大学",
+        "Major": "电子科学与技术",
+        "MatriculationTime": "2013-09",
+        "GraduationTime": "2017-06"
     },
     "JobExpectation": {
-        "JobTags": "",
-        "Pay": "",
-        "City": ""
+        "JobTags": "后端开发、python、golang",
+        "Pay": "6k",
+        "City": "广东省深圳市南山区"
     }
 }
 ```
@@ -667,6 +667,48 @@
 | Major   | 否   | String | 专业名称 |
 | MatriculationTime   | 否   | String | 入学时间 |
 | GraduationTime   | 否   | String | 毕业时间 |
+
+##### 返回示例
+
+``` 
+{
+    "Success"
+}
+```
+
+
+
+
+### 修改求职期望
+
+
+##### 简要描述
+
+- 修改求职期望
+
+##### 请求URL
+- ` http://39.108.110.77/job-hunting/api `
+##### 请求方式
+- POST
+
+``` 
+{
+    "Module": "Controller",
+    "Action": "ModifyJobExpectation",
+    "JobTags": "后端开发、python、golang",
+    "Pay": "6k",
+    "City": "广东省深圳市南山区"
+}
+```
+##### 参数
+
+| 参数名   | 必选 | 类型   | 说明   |
+| :------- | :--- | :----- | ------ |
+| Module   | 是   | String | 模块名 |
+| Action   | 是   | String | 动作名 |
+| JobTags   | 否   | String | 职位类别 |
+| Pay   | 否   | String | 期望薪资 |
+| City   | 否   | String | 期望城市 |
 
 ##### 返回示例
 

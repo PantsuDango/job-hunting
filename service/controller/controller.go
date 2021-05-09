@@ -370,3 +370,44 @@ func (Controller Controller) ModifyEducation(ctx *gin.Context, user tables.User)
 
 	JSONSuccess(ctx, http.StatusOK, "Success")
 }
+
+// 修改求职期望
+func (Controller Controller) ModifyJobExpectation(ctx *gin.Context, user tables.User) {
+
+	// 校验前端传的参数是否符合预期
+	var JobExpectationParams result.JobExpectation
+	if err := ctx.ShouldBindBodyWith(&JobExpectationParams, binding.JSON); err != nil {
+		JSONFail(ctx, http.StatusOK, IllegalRequestParameter, "Invalid json or illegal request parameter", gin.H{
+			"Code":    IncompleteParameters,
+			"Message": err.Error(),
+		})
+		return
+	}
+
+	// 查询求职期望
+	job_expectation := Controller.SocialDB.SelectJobExpectation(user.ID)
+	job_expectation.UserId = user.ID
+	// 改期望城市
+	if len(JobExpectationParams.City) > 0 {
+		job_expectation.City = JobExpectationParams.City
+	}
+	// 改职位类别
+	if len(JobExpectationParams.JobTags) > 0 {
+		job_expectation.JobTags = JobExpectationParams.JobTags
+	}
+	// 改期望薪资
+	if len(JobExpectationParams.Pay) > 0 {
+		job_expectation.Pay = JobExpectationParams.Pay
+	}
+	// 修改求职期望
+	err := Controller.SocialDB.UpdateJobExpectation(job_expectation)
+	if err != nil {
+		JSONFail(ctx, http.StatusOK, AccessDBError, "Access job_expectation table error.", gin.H{
+			"Code":    AccessDBError,
+			"Message": err.Error(),
+		})
+		return
+	}
+
+	JSONSuccess(ctx, http.StatusOK, "Success")
+}

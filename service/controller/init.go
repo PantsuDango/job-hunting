@@ -55,14 +55,15 @@ var HandlerMap map[string]Handler
 func init() {
 	Controller := new(Controller)
 	HandlerMap = map[string]Handler{
-		"Controller.AddJob":          Controller.AddJob,
-		"Controller.ListJob":         Controller.ListJob,
-		"Controller.JobInfo":         Controller.JobInfo,
-		"Controller.DeliverJob":      Controller.DeliverJob,
-		"Controller.UserInfo":        Controller.UserInfo,
-		"Controller.ModifyUser":      Controller.ModifyUser,
-		"Controller.ModifyResume":    Controller.ModifyResume,
-		"Controller.ModifyEducation": Controller.ModifyEducation,
+		"Controller.AddJob":               Controller.AddJob,
+		"Controller.ListJob":              Controller.ListJob,
+		"Controller.JobInfo":              Controller.JobInfo,
+		"Controller.DeliverJob":           Controller.DeliverJob,
+		"Controller.UserInfo":             Controller.UserInfo,
+		"Controller.ModifyUser":           Controller.ModifyUser,
+		"Controller.ModifyResume":         Controller.ModifyResume,
+		"Controller.ModifyEducation":      Controller.ModifyEducation,
+		"Controller.ModifyJobExpectation": Controller.ModifyJobExpectation,
 	}
 }
 
