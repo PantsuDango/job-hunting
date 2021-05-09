@@ -87,5 +87,6 @@ CREATE TABLE `deliver_record` (
     `user_id` int(11) NOT NULL COMMENT '用户id',
     `job_id` int(11) NOT NULL COMMENT '岗位id',
     `createtime` datetime NOT NULL COMMENT '创建时间',
-    PRIMARY KEY (`id`)
+    PRIMARY KEY (`id`),
+    UNIQUE KEY (`user_id`, `job_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COMMENT='简历投递情况表';

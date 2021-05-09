@@ -79,6 +79,11 @@ func (Controller Controller) ListJob(ctx *gin.Context, user tables.User) {
 		for _, tmp := range job_tag_map {
 			jobs[index].Tags = append(jobs[index].Tags, tmp.Tag)
 		}
+		// 查询是否投递过当前职位
+		count := Controller.SocialDB.SelectDeliverRecord(jobs[index].ID, user.ID)
+		if count > 0 {
+			jobs[index].Isdeliver = true
+		}
 	}
 
 	var ListJob result.ListJob
@@ -86,4 +91,40 @@ func (Controller Controller) ListJob(ctx *gin.Context, user tables.User) {
 	ListJob.Count = count
 
 	JSONSuccess(ctx, http.StatusOK, ListJob)
+}
+
+// 查询某岗位详情
+func (Controller Controller) JobInfo(ctx *gin.Context, user tables.User) {
+
+	// 校验前端传的参数是否符合预期
+	var JobInfoParams params.JobInfoParams
+	if err := ctx.ShouldBindBodyWith(&JobInfoParams, binding.JSON); err != nil {
+		JSONFail(ctx, http.StatusOK, IllegalRequestParameter, "Invalid json or illegal request parameter", gin.H{
+			"Code":    IncompleteParameters,
+			"Message": err.Error(),
+		})
+		return
+	}
+
+	// 查询某岗位详情
+	job, err := Controller.SocialDB.SelectJobById(JobInfoParams.ID)
+	if err != nil {
+		JSONFail(ctx, http.StatusOK, AccessDBError, "Access job table error.", gin.H{
+			"Code":    AccessDBError,
+			"Message": err.Error(),
+		})
+		return
+	}
+	job.Createtime = job.CreatedAt.Format("2006-01-02 15:04:05")
+	job_tag_map := Controller.SocialDB.SelectJobTagMapByJobId(job.ID)
+	for _, tmp := range job_tag_map {
+		job.Tags = append(job.Tags, tmp.Tag)
+	}
+	// 查询是否投递过当前职位
+	count := Controller.SocialDB.SelectDeliverRecord(job.ID, user.ID)
+	if count > 0 {
+		job.Isdeliver = true
+	}
+
+	JSONSuccess(ctx, http.StatusOK, job)
 }

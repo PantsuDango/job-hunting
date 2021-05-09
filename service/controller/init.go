@@ -57,6 +57,7 @@ func init() {
 	HandlerMap = map[string]Handler{
 		"Controller.AddJob":  Controller.AddJob,
 		"Controller.ListJob": Controller.ListJob,
+		"Controller.JobInfo": Controller.JobInfo,
 	}
 }
 

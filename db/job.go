@@ -50,3 +50,15 @@ func (SocialDB) SelectJobTagMapByJobId(job_id int) []tables.JobTagMap {
 	exeDB.Where("job_id = ?", job_id).Find(&job_tag_map)
 	return job_tag_map
 }
+
+func (SocialDB) SelectJobById(id int) (params.JobParams, error) {
+	var job params.JobParams
+	err := exeDB.Where("id = ?", id).Find(&job).Error
+	return job, err
+}
+
+func (SocialDB) SelectDeliverRecord(job_id, user_id int) int {
+	var count int
+	exeDB.Model(&tables.DeliverRecord{}).Where("job_id = ? AND user_id = ?", job_id, user_id).Count(&count)
+	return count
+}

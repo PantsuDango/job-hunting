@@ -18,6 +18,7 @@ type JobParams struct {
 	Tags        []string  `json:"Tags"`
 	CreatedAt   time.Time `json:"-"            gorm:"column:createtime"`
 	Createtime  string    `json:"Createtime"`
+	Isdeliver   bool      `json:"Isdeliver"`
 }
 
 func (JobParams) TableName() string {
@@ -27,4 +28,8 @@ func (JobParams) TableName() string {
 type ListJobParams struct {
 	Offset int `json:"Offset"`
 	Limit  int `json:"Limit"`
+}
+
+type JobInfoParams struct {
+	ID int `json:"ID"  binding:"required"`
 }
